@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { ResultsComponent } from './results/results.component';
+import { MailComponent } from "./mail/mail.component";
 export const pagesRoutes: Routes = [
     {
       path: '',
@@ -11,6 +12,9 @@ export const pagesRoutes: Routes = [
         }, {
             path: 'result',
             component: ResultsComponent
+          }, {
+            path: 'email',
+            component: MailComponent
           }
       ]
     }
