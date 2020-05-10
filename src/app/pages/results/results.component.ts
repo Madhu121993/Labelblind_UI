@@ -13,6 +13,9 @@ export class ResultsComponent implements OnInit {
   constructor(private route: ActivatedRoute,private http: Http,private router: Router) { }
 fileName;
 data;
+max:any;
+min:any;
+average:any;
 urlPort = 'http://localhost:3000';
   ngOnInit() {
     this.fileName = this.route.snapshot.paramMap.get('fileName');
@@ -29,6 +32,9 @@ urlPort = 'http://localhost:3000';
        console.log("response in result",response);
        this.data = response.usdValues;
        localStorage.setItem("mailBody",JSON.stringify(this.data));
+       this.max = response.max
+       this.min = response.min
+       this.average = response.average
     });
    }
     
