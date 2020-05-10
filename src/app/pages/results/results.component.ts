@@ -12,6 +12,9 @@ export class ResultsComponent implements OnInit {
   constructor(private route: ActivatedRoute,private http: Http) { }
 fileName;
 data;
+max:any;
+min:any;
+average:any;
 urlPort = 'http://localhost:3000';
   ngOnInit() {
     this.fileName = this.route.snapshot.paramMap.get('fileName');
@@ -29,6 +32,9 @@ urlPort = 'http://localhost:3000';
       .subscribe(response => {
        console.log("response in result",response);
        this.data = response.usdValues;
+       this.max = response.max
+       this.min = response.min
+       this.average = response.average
     });
   }
 
