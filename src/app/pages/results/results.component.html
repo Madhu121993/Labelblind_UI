@@ -1,0 +1,29 @@
+<div class = "container"><br><br>
+    <div class="row">
+        <table class ="table">
+          <thead class ="thead-dark">
+              <tr>
+                  <th>Amount</th>
+                  <th>Currency</th>
+                  <th>Converted Amount</th>
+                  <th>Converted Currency</th>
+                  <th>Date</th>
+                </tr>
+          </thead>
+         <tbody *ngFor = "let val of data">
+            <tr>
+                <td>{{val.Amount}}</td>
+                <td>{{val.Currency}}</td>
+                <td>{{val.convertedAmount}}</td>
+                <td>{{val.convertedCurrency}}</td>
+                <td>{{val.Date}}</td>
+                
+              </tr>
+         </tbody>
+         
+        </table>
+    
+    </div>
+  </div>
+  
+  
