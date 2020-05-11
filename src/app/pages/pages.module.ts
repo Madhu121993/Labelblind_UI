@@ -7,6 +7,7 @@ import { pagesRoutes } from './pages.routing';
 import {HttpModule} from '@angular/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MailComponent } from './mail/mail.component';
+import { ToastrService } from "./toastr.service";
 
 @NgModule({
   declarations: [HomePageComponent, ResultsComponent, MailComponent],
@@ -16,6 +17,7 @@ import { MailComponent } from './mail/mail.component';
     RouterModule.forChild(pagesRoutes),
     FormsModule,
     ReactiveFormsModule
-  ]
+  ],
+  providers:[ToastrService]
 })
 export class PagesModule { }

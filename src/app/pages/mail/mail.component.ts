@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-
+import { ToastrService } from '../toastr.service';
+import {config } from "../../config";
 @Component({
   selector: 'app-mail',
   templateUrl: './mail.component.html',
@@ -10,8 +11,8 @@ import { Observable } from 'rxjs/Rx';
 })
 export class MailComponent implements OnInit {
   form: FormGroup;
-  urlPort = 'http://localhost:3000';
-  constructor(private fb: FormBuilder,private http: Http) { }
+  urlPort = config.urlPort;
+  constructor(private fb: FormBuilder,private http: Http,private toastr:ToastrService) { }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -20,13 +21,17 @@ export class MailComponent implements OnInit {
       email: [null, Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])],
   });
 }
+
+//Send Mail Details
 formSubmit(data) {
   data.jsonBody = JSON.parse(localStorage.getItem("mailBody"))
-  this.http.post(this.urlPort + "/api/users/sendEmail", data)
+  this.http.post(this.urlPort + "/api/mail/sendEmail", data)
       .catch((err) => {
+        this.toastr.Error("Email has not send")
         return Observable.throw(err)
       })
       .subscribe(uploadRes => {
+        this.toastr.Success("Email has successfully send")
        
     });
 
