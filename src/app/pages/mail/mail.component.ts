@@ -16,8 +16,8 @@ export class MailComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      subject: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z]{1,80}")])],
-      body: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z0-9]{1,100}")])],
+      subject: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z ]{1,80}")])],
+      body: [null, Validators.compose([Validators.required, Validators.pattern("[A-Za-z0-9 ,.]{1,100}")])],
       email: [null, Validators.compose([Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$")])],
   });
 }
@@ -27,7 +27,7 @@ formSubmit(data) {
   data.jsonBody = JSON.parse(localStorage.getItem("mailBody"))
   this.http.post(this.urlPort + "/api/mail/sendEmail", data)
       .catch((err) => {
-        this.toastr.Error("Email has not send")
+        this.toastr.Error("Email has not sent")
         return Observable.throw(err)
       })
       .subscribe(uploadRes => {
